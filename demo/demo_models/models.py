@@ -1,17 +1,13 @@
 from django.db import models
-from queryset_transform import TransformManager
-
-class Tag(models.Model):
-    name = models.CharField(max_length = 255)
-    
-    def __unicode__(self):
-        return self.name
+from queryset_decorator import DecoratorManager
 
 class Item(models.Model):
-    name = models.CharField(max_length = 255)
-    tags = models.ManyToManyField(Tag)
-    
-    objects = TransformManager()
-    
+    path = models.CharField(max_length = 255)
+
+    objects = DecoratorManager()
+
     def __unicode__(self):
-        return self.name
+        return self.path
+
+    def get_absolute_url(self):
+        return '/%s/' % self.path.strip('/')
