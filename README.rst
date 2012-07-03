@@ -7,7 +7,7 @@ that will be executed only when the QuerySet itself has been evaluated.
 This allows you to add attributes to individual QuerySet items,
 while still benefiting from Django's lazy QuerySet evaluation.
 
-For example:
+For example::
 
     qs = Item.objects.all().decorate(lamba item: item.is_active = (item.status == 'A'))
     
@@ -21,5 +21,5 @@ relevant work for you once the upper layer is requesting the QuerySet results.
 
 Originally inspired by http://github.com/simonw/django-queryset-transform
 The difference between django-queryset-transform and this variant,
-is that this one operates on single model instances instead of the while list.
+is that this one operates on single model instances instead of the whole list.
 It also keeps the iterator pattern intact this way.
